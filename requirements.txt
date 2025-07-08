@@ -1,0 +1,18 @@
+# Core ML & 3D Libraries
+diffusers
+transformers
+accelerate
+bitsandbytes
+torch
+torchvision
+trimesh
+pyvista
+imageio[ffmpeg]
+
+# API & Server Libraries
+fastapi
+uvicorn[standard]
+nest_asyncio
+
+# Utility
+pyngrok
