@@ -1,4 +1,3 @@
-
 3D Game Asset Generation API
 
 This project provides a backend service for rapidly prototyping 3D game assets from text prompts. It uses OpenAI's Shap-E model, exposed through a high-performance, asynchronous FastAPI application. The service is designed to take a simple text prompt and return a game-ready 3D model, bridging the gap between creative ideas and tangible assets.
@@ -28,7 +27,7 @@ Key Features
 
     Text-to-3D Generation: Leverages the Shap-E model to create 3D meshes from natural language descriptions.
 
-    Asynchronous Architecture: The API is built asynchronously to handle long-running model inference (1-3 minutes) without blocking or causing timeouts—a critical design pattern for production-level ML services.
+    Asynchronous Architecture: The API is built asynchronously to handle long-running model inference (1-3 minutes) without blocking or causing timeouts.
 
     Standardized Outputs: The service generates both a .glb file, the modern standard for 3D web and game assets, and a rotating .gif for immediate visual previewing.
 
@@ -66,6 +65,7 @@ Execution Steps
     !git clone <your-github-repo-url>
 
     # Navigate into the project directory
+    # (replace '3D-Game-Asset-Generation-API' if your repo folder has a different name)
     %cd 3D-Game-Asset-Generation-API 
 
     # Install all necessary dependencies
@@ -74,35 +74,38 @@ Execution Steps
         
 
     IGNORE_WHEN_COPYING_START
-    Use code with caution. Bash
-    IGNORE_WHEN_COPYING_END
 
-    Set Your Ngrok Token:
+Use code with caution. Bash
+IGNORE_WHEN_COPYING_END
 
-        Log in to your ngrok dashboard and copy your authentication token.
+Set Your Ngrok Token:
 
-        In a new code cell, paste the following code and replace "YOUR_NGROK_AUTHTOKEN_HERE" with your actual token. The Python script will read this environment variable to authenticate with ngrok.
-    Generated python
+    Log in to your ngrok dashboard and copy your authentication token.
 
-          
-    import os
-    os.environ['NGROK_AUTH_TOKEN'] = "YOUR_NGROK_AUTHTOKEN_HERE"
+    In a new code cell, paste the following code and replace "YOUR_NGROK_AUTHTOKEN_HERE" with your actual token. The Python script will read this environment variable.
 
-        
+Generated python
 
-    IGNORE_WHEN_COPYING_START
-    Use code with caution. Python
-    IGNORE_WHEN_COPYING_END
+      
+import os
+os.environ['NGROK_AUTH_TOKEN'] = "YOUR_NGROK_AUTHTOKEN_HERE"
 
-    Run the Server: In a final code cell, run the main Python script. This will download the Shap-E model, start the FastAPI server, and print a public ngrok URL that you can use to access the API.
-    Generated bash
+    
 
-          
-    !python 3D_Model.py
+IGNORE_WHEN_COPYING_START
+Use code with caution. Python
+IGNORE_WHEN_COPYING_END
 
-        
+Run the Server: In a final code cell, run the main Python script. This will download the Shap-E model, start the FastAPI server, and print a public ngrok URL that you can use to access the API.
+Generated bash
 
-    IGNORE_WHEN_COPYING_START
+      
+!python 3D_Model.py
+
+    
+
+IGNORE_WHEN_COPYING_START
+
     Use code with caution. Bash
     IGNORE_WHEN_COPYING_END
 
@@ -112,7 +115,6 @@ API Reference
 
 The server exposes a RESTful API to generate and retrieve 3D models.
 Endpoints
-
 GET /status
 
     Description: Checks the health and status of the API and the loaded model.
@@ -131,6 +133,7 @@ GET /status
         
 
     IGNORE_WHEN_COPYING_START
+
     Use code with caution. Json
     IGNORE_WHEN_COPYING_END
 
@@ -153,6 +156,7 @@ POST /generate3d
         
 
     IGNORE_WHEN_COPYING_START
+
     Use code with caution. Json
     IGNORE_WHEN_COPYING_END
 
@@ -179,6 +183,7 @@ GET /job/{job_id}
         
 
     IGNORE_WHEN_COPYING_START
+
     Use code with caution. Json
     IGNORE_WHEN_COPYING_END
 
@@ -215,11 +220,4 @@ Generated code
 │   ├── sample_cute_magical_fox.gif
 │   └── sample_cute_magical_fox.glb
 ├── .gitignore        # Specifies files and directories to be ignored by Git.
-└── README.md         # This project documentation file.
-
-    
-
-IGNORE_WHEN_COPYING_START
-Use code with caution.
-IGNORE_WHEN_COPYING_END
-40.1s
+└── README.md         # This project documentation file
