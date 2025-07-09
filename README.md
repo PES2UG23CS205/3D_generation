@@ -40,14 +40,77 @@ The project is designed to be executed directly in Google Colab.
 - A Google Account (for Colab).
 - A free [Ngrok](https://ngrok.com/) account to create a public URL tunnel to the API.
 
-### Execution Steps
-1.  **Open Notebook in Colab**: Navigate to the `3D_Model.ipynb` file in this repository. GitHub provides an "Open in Colab" button at the top of the file viewer. Click it.
-2.  **Set Runtime Type**: Once the notebook is open in Colab, go to the menu and navigate to `Runtime` -> `Change runtime type` and select `T4 GPU` from the dropdown. This is required for model inference.
-3.  **Add Ngrok Token**:
-    -   Log in to your [ngrok dashboard](https://dashboard.ngrok.com/get-started/your-authtoken) and copy your authentication token.
-    -   In the Colab code cell, find the line `NGROK_AUTH_TOKEN = "YOUR_NGROK_AUTHTOKEN_HERE"` and paste your token inside the quotes.
-4.  **Run the Notebook**: Run the single large code cell. It will automatically install all dependencies, load the Shap-E model, and start the FastAPI server. Upon successful launch, it will print the public API URL provided by ngrok.
+ ## Execution Steps
 
+    Open Colab & Set GPU Runtime:
+
+        Go to colab.research.google.com and click "New notebook".
+
+        In the top menu, navigate to Runtime -> Change runtime type.
+
+        Select T4 GPU from the hardware accelerator dropdown and click Save.
+
+    Upload the Python Script:
+
+        On the left sidebar of your Colab notebook, click the folder icon to open the file browser.
+
+        Click the "Upload to session storage" button (it looks like a page with an up-arrow) and select your 3D_Model.py file from your computer.
+
+        Wait for the file to finish uploading. You should see 3D_Model.py appear in the file list.
+
+    Install Dependencies:
+
+        Create a new code cell in your notebook.
+
+        Paste and run the following command to install all the necessary Python libraries.
+    Generated bash
+
+          
+    !pip install fastapi "uvicorn[standard]" pyngrok torch shap_e transformers diffusers accelerate trimesh pillow imageio imageio[ffmpeg]
+
+        
+
+    IGNORE_WHEN_COPYING_START
+
+Use code with caution. Bash
+IGNORE_WHEN_COPYING_END
+
+Set Your Ngrok Token:
+
+    Log in to your ngrok dashboard and copy your Authtoken.
+
+    In a new code cell, paste the following code, replacing "YOUR_NGROK_AUTHTOKEN_HERE" with your actual token.
+
+Generated python
+
+      
+import os
+os.environ['NGROK_AUTH_TOKEN'] = "YOUR_NGROK_AUTHTOKEN_HERE"
+
+    
+
+IGNORE_WHEN_COPYING_START
+Use code with caution. Python
+IGNORE_WHEN_COPYING_END
+
+    Run this cell to set the token for your environment.
+
+Run the API Server:
+
+    In a final code cell, paste and run the following command. This will execute your script, download the Shap-E model (on first run), start the FastAPI server, and create a public URL.
+
+Generated bash
+
+      
+!python 3D_Model.py
+
+    
+
+IGNORE_WHEN_COPYING_START
+Use code with caution. Bash
+IGNORE_WHEN_COPYING_END
+
+    Look for a line in the output like * Running on <...>.ngrok.io. This is your public API address.
 ---
 
 ## API Reference
@@ -116,7 +179,7 @@ curl -X GET "https://<your-ngrok-url>/job/<your-job-id>"
 ## Project Structure
 ```
 .
-├── 3D_Model.ipynb    # The main Colab notebook with all code and logic.
+├── 3D_Model.py   # The main Colab notebook with all code and logic.
 ├── requirements.txt          # Python dependencies (for local setup reference).
 ├── generated_assets/         # Directory for sample outputs.
 │   └── sample_cute_magical_fox.gif
